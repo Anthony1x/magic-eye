@@ -1,4 +1,5 @@
 #include "Grid.h"
+#include <algorithm>
 
 Grid::Grid()
 {
@@ -6,11 +7,12 @@ Grid::Grid()
 
 Grid::Grid(int cellSize) : cellSize(cellSize)
 {
-    int numCells = GetNumCells(cellSize);
-    cellColors = std::vector<Color>(numCells * numCells);
+    int numCellsX = GetNumCells(cellSize);
+    int numCellsY = GetNumCells(cellSize);
+    cellColors = std::vector<Color>(numCellsX * numCellsY);
 
     // Initialize all cell colors to black
-    for (int i = 0; i < numCells * numCells; i++)
+    for (int i = 0; i < numCellsX * numCellsY; i++)
     {
         cellColors[i] = BLACK;
     }
@@ -32,32 +34,49 @@ void Grid::SetCellColor(int x, int y, Color color)
 
 void Grid::DrawGrid()
 {
-    int numCells = GetNumCells(cellSize);
+    int numCellsX = GetNumCells(cellSize);
+    int numCellsY = GetNumCells(cellSize);
 
-    /* for (int i = 0; i <= numCellsX; i++) {
-    // Draw vertical lines
-      DrawLine(i * cellSize, 0, i * cellSize, GetScreenHeight(), RAYWHITE);
-    }
-
-    for (int i = 0; i <= numCellsY; i++) {
-        // Draw horizontal lines
+    for (int i = 0; i <= numCellsX; i++)
+    {
+        // Draw vertical lines
         DrawLine(0, i * cellSize, GetScreenWidth(), i * cellSize, RAYWHITE);
     }
-    */
+
+    for (int i = 0; i <= numCellsY; i++)
+    {
+        // Draw horizontal lines
+        DrawLine(i * cellSize, 0, i * cellSize, GetScreenHeight(), RAYWHITE);
+    }
 
     // Draw cell colors
-    for (int y = 0; y < numCells; y++)
+    for (int y = 0; y < numCellsY; y++)
     {
-        for (int x = 0; x < numCells; x++)
+        for (int x = 0; x < numCellsX; x++)
         {
-            Color aa = cellColors[y * numCells + x];
-            DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, aa);
+            Color color = cellColors[y * numCellsX + x];
+
+            DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, color);
         }
     }
 }
 
-// Helper function to get number of cells based on screen size
-int Grid::GetNumCells(int cellSize)
-{
-    return (GetScreenWidth() / cellSize) + 1; // Add 1 to ensure full coverage
+int Grid::GetNumCells(int cellSize) {
+  // Get the screen dimensions from Raylib
+  int screenWidth = GetScreenWidth();
+  int screenHeight = GetScreenHeight();
+
+  // Calculate the maximum number of cells that fit horizontally and vertically
+  int numCellsX = screenWidth / cellSize;
+  int numCellsY = screenHeight / cellSize;
+
+  // Instead of choosing the minimum, calculate the number of cells 
+  // that would fill most of the screen area while maintaining a 1:1 aspect ratio
+  int idealCellsX = screenHeight / cellSize;  // Assuming height is the limiting factor
+  int idealCellsY = screenWidth / cellSize;   // Assuming width is the limiting factor
+
+  // Choose the option that utilizes the most space while maintaining a 1:1 ratio
+  int numCells = std::max(idealCellsX, idealCellsY);
+
+  return numCells;
 }

@@ -1,5 +1,8 @@
 #pragma once
+extern "C"
+{
 #include "raylib.h"
+}
 #include <iostream>
 #include <string>
 #include <vector>

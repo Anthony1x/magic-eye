@@ -1,5 +1,8 @@
 #include "Game.h"
+extern "C"
+{
 #include "raylib.h"
+}
 
 int main(void)
 {
