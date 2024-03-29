@@ -39,8 +39,8 @@ void Game::Update()
             auto cG = gg.y;
             auto cB = gg.z;
 
-            std::cout << "Clicked cell color: (" << cellX << ", " << cellY << ") - "
-                      << cR << ", " << cG << ", " << cB << std::endl;
+            std::cout << "Clicked cell color: (" << cellX << ", " << cellY << ") - " << cR << ", " << cG << ", " << cB
+                      << std::endl;
 
             // grid.SetCellColor(cellX, cellY, WHITE);
         }

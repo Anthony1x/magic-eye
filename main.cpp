@@ -1,6 +1,5 @@
-#include "raylib.h"
 #include "Game.h"
-#include "Grid.h"
+#include "raylib.h"
 
 int main(void)
 {

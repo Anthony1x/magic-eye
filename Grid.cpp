@@ -14,28 +14,6 @@ Grid::Grid(int cellSize) : cellSize(cellSize)
     {
         cellColors[i] = BLACK;
     }
-
-    // Debug check for non-black colors
-    for (int i = 0; i < numCells * numCells; i++)
-    {
-        auto hsv = ColorToHSV(cellColors[i]);
-
-        auto h = hsv.x;
-        auto s = hsv.y;
-        auto v = hsv.z;
-
-        auto hsvBlack = ColorToHSV(BLACK);
-
-        auto hBlack = hsvBlack.x;
-        auto sBlack = hsvBlack.y;
-        auto vBlack = hsvBlack.z;
-
-        if (h != hBlack || s != sBlack || v != vBlack)
-        {
-            std::cerr << "Error: Cell color initialization failed. Found non-black color at index " << i << std::endl;
-            break; // Exit the loop after finding the first non-black color
-        }
-    }
 }
 
 Color Grid::GetCellColor(int x, int y)
@@ -72,7 +50,8 @@ void Grid::DrawGrid()
     {
         for (int x = 0; x < numCells; x++)
         {
-            DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, cellColors[y * numCells + x]);
+            Color aa = cellColors[y * numCells + x];
+            DrawRectangle(x * cellSize, y * cellSize, cellSize, cellSize, aa);
         }
     }
 }
