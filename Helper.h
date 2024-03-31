@@ -2,10 +2,7 @@
 
 #include <numeric>
 #include <vector>
-extern "C"
-{
 #include "raylib.h"
-}
 
 class Helper
 {

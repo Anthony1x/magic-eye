@@ -1,10 +1,8 @@
 #pragma once
 #include "Grid.h"
 #include <cstdint>
-extern "C"
-{
 #include "raylib.h"
-}
+
 class Game
 {
   public:
