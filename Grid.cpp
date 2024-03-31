@@ -1,4 +1,5 @@
 #include "Grid.h"
+#include "Helper.h"
 #include <algorithm>
 
 Grid::Grid()
