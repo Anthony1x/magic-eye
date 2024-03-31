@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Helper.h"
 #include "raylib.h"
 
 Game::Game()
@@ -8,7 +9,9 @@ Game::Game()
 
     InitWindow(screenWidth, screenHeight, "optical illusion");
 
-    cellSize = 200;
+    commonDivisors = Helper::CommonDivisors(screenWidth, screenHeight);
+
+    cellSize = commonDivisors.back();
 
     grid = Grid(cellSize);
 
@@ -34,6 +37,12 @@ void Game::Update()
 
             grid.SetCellColor(cellX, cellY, WHITE);
         }
+    }
+
+    if (IsKeyPressed(KEY_I))
+    {
+        cellSize = commonDivisors.rbegin()[1];
+        grid = Grid(cellSize);
     }
 }
 

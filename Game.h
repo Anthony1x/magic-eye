@@ -13,4 +13,5 @@ class Game
   private:
     Grid grid;
     uint8_t cellSize;
+    std::vector<int> commonDivisors;
 };
