@@ -11,10 +11,10 @@ Grid::Grid(int cellSize) : cellSize(cellSize)
     int numCellsY = GetNumCells(cellSize);
     cellColors = std::vector<Color>(numCellsX * numCellsY);
 
-    // Initialize all cell colors to black
+    // Initialize all cell colors to a random color
     for (int i = 0; i < numCellsX * numCellsY; i++)
     {
-        cellColors[i] = BLACK;
+        cellColors[i] = Helper::RandomColor(false);
     }
 }
 

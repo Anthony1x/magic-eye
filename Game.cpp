@@ -35,7 +35,7 @@ void Game::Update()
         {
             Color currentColor = grid.GetCellColor(cellX, cellY);
 
-            grid.SetCellColor(cellX, cellY, WHITE);
+            grid.SetCellColor(cellX, cellY, Helper::RandomColor(true));
         }
     }
 
