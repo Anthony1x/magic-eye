@@ -50,22 +50,23 @@ void Grid::DrawGrid()
     }
 }
 
-int Grid::GetNumCells(int cellSize) {
-  // Get the screen dimensions from Raylib
-  int screenWidth = GetScreenWidth();
-  int screenHeight = GetScreenHeight();
+int Grid::GetNumCells(const int cellSize)
+{
+    // Get the screen dimensions from Raylib
+    int screenWidth = GetScreenWidth();
+    int screenHeight = GetScreenHeight();
 
-  // Calculate the maximum number of cells that fit horizontally and vertically
-  int numCellsX = screenWidth / cellSize;
-  int numCellsY = screenHeight / cellSize;
+    // Calculate the maximum number of cells that fit horizontally and vertically
+    int numCellsX = screenWidth / cellSize;
+    int numCellsY = screenHeight / cellSize;
 
-  // Instead of choosing the minimum, calculate the number of cells 
-  // that would fill most of the screen area while maintaining a 1:1 aspect ratio
-  int idealCellsX = screenHeight / cellSize;  // Assuming height is the limiting factor
-  int idealCellsY = screenWidth / cellSize;   // Assuming width is the limiting factor
+    // Instead of choosing the minimum, calculate the number of cells
+    // that would fill most of the screen area while maintaining a 1:1 aspect ratio
+    int idealCellsX = screenHeight / cellSize; // Assuming height is the limiting factor
+    int idealCellsY = screenWidth / cellSize;  // Assuming width is the limiting factor
 
-  // Choose the option that utilizes the most space while maintaining a 1:1 ratio
-  int numCells = std::max(idealCellsX, idealCellsY);
+    // Choose the option that utilizes the most space while maintaining a 1:1 ratio
+    int numCells = std::max(idealCellsX, idealCellsY);
 
-  return numCells;
+    return numCells;
 }
