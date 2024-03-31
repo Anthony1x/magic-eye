@@ -38,18 +38,6 @@ void Grid::DrawGrid()
     int numCellsX = GetNumCells(cellSize);
     int numCellsY = GetNumCells(cellSize);
 
-    for (int i = 0; i <= numCellsX; i++)
-    {
-        // Draw vertical lines
-        DrawLine(0, i * cellSize, GetScreenWidth(), i * cellSize, RAYWHITE);
-    }
-
-    for (int i = 0; i <= numCellsY; i++)
-    {
-        // Draw horizontal lines
-        DrawLine(i * cellSize, 0, i * cellSize, GetScreenHeight(), RAYWHITE);
-    }
-
     // Draw cell colors
     for (int y = 0; y < numCellsY; y++)
     {
